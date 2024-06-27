@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Movie;
+use Illuminate\Validation\Rule;
 
 class CreateMovieRequest extends FormRequest
 {
@@ -24,11 +26,14 @@ class CreateMovieRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'unique:movies'],
-            'image_url' => ['required', 'url'],
-            'published_year' => ['required', 'gte:1900'],
-            'description' => ['required'],
-            'is_showing' => ['required', 'boolean'],
+            // こっちは入力されたデータに対するユニークのバリデーション
+            // テーブルそのものをユニークにしたいなら、migrationファイルを変更する
+            'title' => ['required', Rule::unique('movies')->ignore($this ->id)],
+            'image_url' => ['required', 'url'], // ok
+            'published_year' => ['required'], // ok
+            'description' => ['required'], // ok
+            'is_showing' => ['required', 'boolean'], // out
+            // 'name' => ['required', 'unique:genres,name'], // out
             'genre' => ['required'],
         ];
     }
