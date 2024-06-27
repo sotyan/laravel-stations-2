@@ -202,7 +202,7 @@ class MovieController extends Controller
 
     public function adminStoreSchedules(CreateScheduleRequest $request){
         // date型にするため、結合
-         dd($request);
+        //dd($request);
         $start_time = $request->start_time_date . ' ' . $request->start_time_time;
         $end_time = $request->end_time_date . ' ' . $request->end_time_time;
         try{
