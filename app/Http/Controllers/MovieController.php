@@ -282,6 +282,23 @@ class MovieController extends Controller
         return view('detail', compact('movie','schedules'));
     }
 
+    public function movieSheet($movie_id, $schedule_id){
+        //dd($movie_id, $schedule_id);
+        $movie = Movie::find($movie_id);
+        $schedule = Schedule::find($schedule_id);
+        $sheets = Sheet::all();
+        return view('movieSheet',compact('movie','schedule','sheets'));
+    }
+
+    public function sheetReserve($movie_id, $schedule_id, $sheet_id){
+        
+        $movie = Movie::find($movie_id);
+        $schedule = Schedule::find($schedule_id);
+        $sheet = Sheet::find($sheet_id);
+        //return view('sheetReserve',compact('movie','schedule','sheet'));
+        return view('sheetReserve');
+    }
+
     public function sheets() {
         $sheets = Sheet::all();
         //dd($seets);

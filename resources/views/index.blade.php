@@ -29,6 +29,7 @@
     @foreach($movies as $movie)
         <li>映画タイトル：{{ $movie->title }}</li>
         <li>画像URL:{{ $movie->image_url }}</li>
+        <li><a href="{{route('detail',['id' => $movie->id])}}">詳細</a></li>
     @endforeach
     </ul>
     <div class="pagination">

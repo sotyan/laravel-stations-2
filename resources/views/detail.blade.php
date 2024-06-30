@@ -21,6 +21,10 @@
 
     @foreach ($schedules as $schedule)
         <p>{{ $schedule->start_time}} ~ {{ $schedule->end_time }}</p>
+        <a href="{{ route('movieSheet', ['movie_id' => $movie->id , 'schedule_id' => $schedule->id ]). '?date=' . $schedule->start_time->format('Y-m-d') }}">座席を予約する</a>
+        </p>
     @endforeach
+
+    
 </body>
 </html>

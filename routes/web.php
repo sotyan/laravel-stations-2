@@ -29,7 +29,8 @@ Route::get('/getPractice', [PracticeController::class, 'getPractice']);
 Route::get('/movies', [MovieController::class, 'index']);
 Route::get('/movies/search', [MovieController::class, 'search']);
 Route::get('/movies/{id}', [MovieController::class, 'detail'])->name('detail');
-Route::get('/sheets', [MovieController::class, 'sheets'])->name('sheets');
+Route::get('/movies/{movie_id}/schedules/{schedule_id}/sheets', [MovieController::class, 'movieSheet'])->name('movieSheet');
+Route::get('/movies/{movie_id}/schedules/{schedule_id}/reservations/create', [MovieController::class, 'sheetReserve'])->name('sheetReserve');
 
 Route::get('/admin/movies', [MovieController::class, 'adminIndex']);
 Route::get('/admin/movies/create', [MovieController::class, 'adminCreate'])->name('create');
@@ -47,3 +48,5 @@ Route::patch('/admin/schedules/{id}/update',[MovieController::class, 'adminUpdat
 // Route::post('/admin/movies/{id}/schedules/store',[MovieController::class, 'adminStoreSchedules'])->name('adminStoreSchedules');
 Route::post('/admin/movies/{id}/schedules/store',[MovieController::class, 'adminStoreSchedules']);
 Route::delete('/admin/schedules/{id}/destroy',[MovieController::class, 'adminDestroySchedules'])->name('destroySchedules');
+
+Route::get('/sheets', [MovieController::class, 'sheets'])->name('sheets');
