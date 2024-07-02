@@ -31,6 +31,8 @@ Route::get('/movies/search', [MovieController::class, 'search']);
 Route::get('/movies/{id}', [MovieController::class, 'detail'])->name('detail');
 Route::get('/movies/{movie_id}/schedules/{schedule_id}/sheets', [MovieController::class, 'movieSheet'])->name('movieSheet');
 Route::get('/movies/{movie_id}/schedules/{schedule_id}/reservations/create', [MovieController::class, 'sheetReserve'])->name('sheetReserve');
+Route::post('/reservations/store', [MovieController::class, 'reservationsCreate'])->name('reservationsCreate');
+
 
 Route::get('/admin/movies', [MovieController::class, 'adminIndex']);
 Route::get('/admin/movies/create', [MovieController::class, 'adminCreate'])->name('create');

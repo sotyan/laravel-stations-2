@@ -14,7 +14,7 @@
         @foreach($sheets as $sheet)
         <tr>
             <td>{{ $sheet->id }}</td>
-            <td><a href="{{ route('sheetReserve', ['movie_id' => $movie->id , 'schedule_id' => $schedule->id , 'sheet_id' => $sheet->id])}}">{{ $sheet->row }}-{{ $sheet->column }}</a></td>
+            <td><a href="{{ route('sheetReserve', ['movie_id' => $movie->id , 'schedule_id' => $schedule->id]) . '?date=' . $date . '&sheet_id=' . $sheet->id}}">{{ $sheet->row }}-{{ $sheet->column }}</a></td>
         </tr>
         @endforeach
     </tbody>

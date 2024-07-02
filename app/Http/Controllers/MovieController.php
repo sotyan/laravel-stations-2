@@ -282,22 +282,29 @@ class MovieController extends Controller
         return view('detail', compact('movie','schedules'));
     }
 
-    public function movieSheet($movie_id, $schedule_id){
+    public function movieSheet(Request $request, $movie_id, $schedule_id){
         //dd($movie_id, $schedule_id);
         $movie = Movie::find($movie_id);
         $schedule = Schedule::find($schedule_id);
         $sheets = Sheet::all();
-        return view('movieSheet',compact('movie','schedule','sheets'));
+        $date = $request->date;
+        // dd($date);
+        // 通常引数の数はweb.phpのルートの中の引数と同じにする必要がある。
+        // そのためurlに直接つけることで、ルートの中の引数を同じにしながら、$requestでdateを取得する
+        return view('movieSheet',compact('movie','schedule','sheets','date'));
     }
 
-    public function sheetReserve($movie_id, $schedule_id, $sheet_id){
-        
+    public function sheetReserve(Request $request, $movie_id, $schedule_id){
         $movie = Movie::find($movie_id);
         $schedule = Schedule::find($schedule_id);
-        $sheet = Sheet::find($sheet_id);
-        //return view('sheetReserve',compact('movie','schedule','sheet'));
-        return view('sheetReserve');
+        $sheet = $request->sheet_id;
+        $date = $request->date;
+        //dd($request);
+        //dd($sheet,$date);
+        return view('sheetReserve',compact('movie','schedule','sheet', 'date'));
     }
+
+    public function reservationCreate(){}
 
     public function sheets() {
         $sheets = Sheet::all();
